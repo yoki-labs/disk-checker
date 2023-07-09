@@ -10,11 +10,11 @@ check_disk_capacity() {
   disk_capacity=${disk_capacity%?} # Remove the '%' sign
 
   if ((disk_capacity < THRESHOLD)); then
-    message="Warning: Disk capacity is below ${THRESHOLD}% <@${GUILDED_DISK_ROLE}>"
+    message="Warning: Disk usage is ABOVE ${disk_capacity}% <@${GUILDED_DISK_ROLE}>"
     echo $message
     curl -H "Content-Type: application/json" -d "{\"content\":\"$message\"}" "$GUILDED_DISK_URL"
   else
-    message="Disk capacity is at ${disk_capacity}%"
+    message="Disk usage is at ${disk_capacity}%"
     echo $message
     curl -H "Content-Type: application/json" -d "{\"content\":\"$message\"}" "$GUILDED_DISK_URL"
   fi
